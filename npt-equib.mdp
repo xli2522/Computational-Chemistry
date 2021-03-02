@@ -1,0 +1,75 @@
+;=================================================================
+; Fairly minimal mdp file for NpT equilibration
+; Name: npt-equib.mdp
+; If in doubt: http://manual.gromacs.org/online/mdp_opt.html
+;==================================================================
+;
+;  No position restraints in this one. If needed, add them here.
+;
+;== RUN CONTROL. Time in ps.  ===============================
+;
+title		= NpT equilibration of TIP3P water
+integrator 	= md 		; standard leap-frog. others are available incl. vv
+dt		    = 0.001		; time step in ps. No constraints: 0.001, w/: 0.002.
+nsteps		= 10000 	; # of steps. This would mean 10 ps for MD (10000*0.001). 
+comm-mode	= linear	; removes both translation and rotation of COM (center of mass).
+nstcomm		= 100		; frequency (in steps) to remove COM motion
+;
+;== NEIGHBOR LISTS ============================
+;
+cutoff-scheme 	= Verlet	; Verlet is needed for GPU. Works with CPUs too
+nstlist 	    = 20		; neighbor list update frq. Verlet: 20-40, group <10. 20 fs.
+ns_type		    = simple	; method for constructing neighbor lists. Grid is faster
+pbc		        = xyz		; Full periodic boundary conditions
+verlet-buffer-tolerance = 0.005 ; May have to use smaller value for NVE but let’s start with this
+;
+;== OUTPUT CONTROL ===================================================
+;
+nstxout		= 500		; write out coordinates every 0.5 ps. Standard: 1.0 ps
+nstvout		= 500		; frq for writing out velocities
+nstenergy	= 500		; frq for writing out energies
+nstlog		= 1000		; frq for updating the log file
+; 
+;== Electrostatics. Default order: 4, tol: 1e-5, spacing: 0.12 nm, geom: 3d ==
+;
+coulombtype	= pme		; you really do want to use PME instead of cutoff
+rcoulomb	= 1.0		; Coulomb real space cutoff
+;
+;== Van der Waals interactions.================================
+;
+; rvdw MUST be chosen to be commensurate with rcoulomb
+;
+vdwtype		= cut-off	; 
+rvdw		= 1.0		; vdW cutoff. 
+dispcorr	= EnerPres	; Dispersion correction applied to energy & pressure
+;
+;== TEMPERATURE COUPLING: NVT / NpT RUNS=======================
+;
+tcoupl       = v-rescale  ; NVT / NpT RUN
+;
+;== PRESSURE COUPLING: NpT RUNS =====================
+;
+pcoupl           = parrinello-rahman	; sets a parrinello-rahman barostat
+pcoupltype       = isotropic		    ; isotropic coupling
+tau_p            = 2.0			        ; coupling time, 2 ps
+ref_p            = 1.0			        ; pressure in bars
+refcoord-scaling = all			        ; all coordinates scaled
+compressibility	 = 4.5e-5		        ; as it says, compressibility
+;
+;== GENERATE VELOCITIES: NEEDED FOR EQUILIBRATION AND SET UP =======================
+;
+; NOTE: gen_vel = no if the run is a continuation! 
+;
+gen_vel		= no		; generate velocities from a Maxwell distribution
+gen-seed	= -1		; random seed for random number generation 
+gen_temp	= 300		; temperature for the above Maxwell distribution
+;
+ref_t        = 300		  ; temperature in Kelvin
+tau_t        = 0.1		  ; time constant for coupling. 0.1 ps
+tc_grps	     = System	  ; Let's put the whole system on single thermostat
+; Also needed when running back-to-back equilibration runs! (NVT-> NpT)
+; IMPORTANT: You may need to set gen_vel=no above. 
+; 
+continuation = no 		  ; restarting a previous run?
+;
+;====================================================================================
