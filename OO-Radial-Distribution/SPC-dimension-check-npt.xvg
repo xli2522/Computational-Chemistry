@@ -1,0 +1,47 @@
+# This file was created Fri Mar  5 03:53:38 2021
+# Created by:
+#                      :-) GROMACS - gmx energy, 2020.4 (-:
+# 
+# Executable:   /home/xli/CHEM3300G/gmx/bin/gmx
+# Data prefix:  /home/xli/CHEM3300G/gmx
+# Working dir:  /home/xli/CHEM3300G/lab3_water
+# Command line:
+#   gmx energy -f spc-oplsaa-cubic-npt-run -o dimension-check-npt.xvg -e 10
+# gmx energy is part of G R O M A C S:
+#
+# Good gRace! Old Maple Actually Chews Slate
+#
+@    title "GROMACS Energies"
+@    xaxis  label "Time (ps)"
+@    yaxis  label "(nm)"
+@TYPE xy
+@ view 0.15, 0.15, 0.75, 0.85
+@ legend on
+@ legend box on
+@ legend loctype view
+@ legend 0.78, 0.8
+@ legend length 2
+@ s0 legend "Box-X"
+@ s1 legend "Box-Y"
+@ s2 legend "Box-Z"
+    0.000000    4.000000    4.000000    4.000000
+    0.500000    4.038926    4.038926    4.038926
+    1.000000    4.061356    4.061356    4.061356
+    1.500000    4.034481    4.034481    4.034481
+    2.000000    4.034980    4.034980    4.034980
+    2.500000    4.048358    4.048358    4.048358
+    3.000000    4.050807    4.050807    4.050807
+    3.500000    4.043249    4.043249    4.043249
+    4.000000    4.051301    4.051301    4.051301
+    4.500000    4.063031    4.063031    4.063031
+    5.000000    4.044785    4.044785    4.044785
+    5.500000    4.033003    4.033003    4.033003
+    6.000000    4.034326    4.034326    4.034326
+    6.500000    4.036823    4.036823    4.036823
+    7.000000    4.034151    4.034151    4.034151
+    7.500000    4.041858    4.041858    4.041858
+    8.000000    4.043902    4.043902    4.043902
+    8.500000    4.048181    4.048181    4.048181
+    9.000000    4.048749    4.048749    4.048749
+    9.500000    4.046830    4.046830    4.046830
+   10.000000    4.052305    4.052305    4.052305

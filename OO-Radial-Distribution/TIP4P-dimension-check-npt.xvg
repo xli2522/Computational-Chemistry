@@ -1,0 +1,47 @@
+# This file was created Fri Mar  5 03:15:52 2021
+# Created by:
+#                      :-) GROMACS - gmx energy, 2020.4 (-:
+# 
+# Executable:   /home/xli/CHEM3300G/gmx/bin/gmx
+# Data prefix:  /home/xli/CHEM3300G/gmx
+# Working dir:  /home/xli/CHEM3300G/assignment5_2
+# Command line:
+#   gmx energy -f tip4p-oplsaa-cubic-npt-run -o dimension-check-npt.xvg
+# gmx energy is part of G R O M A C S:
+#
+# GRoups of Organic Molecules in ACtion for Science
+#
+@    title "GROMACS Energies"
+@    xaxis  label "Time (ps)"
+@    yaxis  label "(nm)"
+@TYPE xy
+@ view 0.15, 0.15, 0.75, 0.85
+@ legend on
+@ legend box on
+@ legend loctype view
+@ legend 0.78, 0.8
+@ legend length 2
+@ s0 legend "Box-X"
+@ s1 legend "Box-Y"
+@ s2 legend "Box-Z"
+    0.000000    4.000000    4.000000    4.000000
+    0.500000    3.957818    3.957818    3.957818
+    1.000000    4.038212    4.038212    4.038212
+    1.500000    4.065712    4.065712    4.065712
+    2.000000    4.039110    4.039110    4.039110
+    2.500000    4.036538    4.036538    4.036538
+    3.000000    4.051744    4.051744    4.051744
+    3.500000    4.045688    4.045688    4.045688
+    4.000000    4.044871    4.044871    4.044871
+    4.500000    4.041215    4.041215    4.041215
+    5.000000    4.038951    4.038951    4.038951
+    5.500000    4.049932    4.049932    4.049932
+    6.000000    4.038071    4.038071    4.038071
+    6.500000    4.052361    4.052361    4.052361
+    7.000000    4.053745    4.053745    4.053745
+    7.500000    4.054233    4.054233    4.054233
+    8.000000    4.041549    4.041549    4.041549
+    8.500000    4.053734    4.053734    4.053734
+    9.000000    4.042410    4.042410    4.042410
+    9.500000    4.038748    4.038748    4.038748
+   10.000000    4.045570    4.045570    4.045570

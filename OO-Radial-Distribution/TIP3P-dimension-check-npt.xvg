@@ -1,0 +1,47 @@
+# This file was created Fri Mar  5 03:14:59 2021
+# Created by:
+#                      :-) GROMACS - gmx energy, 2020.4 (-:
+# 
+# Executable:   /home/xli/CHEM3300G/gmx/bin/gmx
+# Data prefix:  /home/xli/CHEM3300G/gmx
+# Working dir:  /home/xli/CHEM3300G/assignment5_tip3p
+# Command line:
+#   gmx energy -f spc-oplsaa-cubic-npt-run -o dimension-check-npt.xvg
+# gmx energy is part of G R O M A C S:
+#
+# Gromacs Runs One Microsecond At Cannonball Speeds
+#
+@    title "GROMACS Energies"
+@    xaxis  label "Time (ps)"
+@    yaxis  label "(nm)"
+@TYPE xy
+@ view 0.15, 0.15, 0.75, 0.85
+@ legend on
+@ legend box on
+@ legend loctype view
+@ legend 0.78, 0.8
+@ legend length 2
+@ s0 legend "Box-X"
+@ s1 legend "Box-Y"
+@ s2 legend "Box-Z"
+    0.000000    4.000000    4.000000    4.000000
+    0.500000    3.940880    3.940880    3.940880
+    1.000000    4.028233    4.028233    4.028233
+    1.500000    4.067714    4.067714    4.067714
+    2.000000    4.039553    4.039553    4.039553
+    2.500000    4.022457    4.022457    4.022457
+    3.000000    4.042089    4.042089    4.042089
+    3.500000    4.047260    4.047260    4.047260
+    4.000000    4.030391    4.030391    4.030391
+    4.500000    4.028782    4.028782    4.028782
+    5.000000    4.042892    4.042892    4.042892
+    5.500000    4.039719    4.039719    4.039719
+    6.000000    4.041921    4.041921    4.041921
+    6.500000    4.038270    4.038270    4.038270
+    7.000000    4.033957    4.033957    4.033957
+    7.500000    4.045421    4.045421    4.045421
+    8.000000    4.039741    4.039741    4.039741
+    8.500000    4.038676    4.038676    4.038676
+    9.000000    4.041859    4.041859    4.041859
+    9.500000    4.038265    4.038265    4.038265
+   10.000000    4.041988    4.041988    4.041988
