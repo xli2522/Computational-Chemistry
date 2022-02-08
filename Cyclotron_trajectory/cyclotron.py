@@ -22,6 +22,7 @@ Question: Magnetic field B = 0.5 Tesla (x=0) z direction. With a linear gradient
             formulation? Describe the departures from classical theory which you see. Also indicate what
             you mean by “significant”.
 '''
+from cProfile import label
 import numpy as np
 import matplotlib.pyplot as plt
 import time
@@ -39,7 +40,7 @@ def main():
 
     freq = q*B/m/(2*np.pi)              # calculate the cyclotron frequency (converted to Hz) at the initial position
     cycles = 10
-    tau = 10**(-9)
+    tau = 10**(-10)
     nSteps = int(cycles/freq/tau)       # estimate the rough number of steps required to reach n cycles
     
     start = time.time()
@@ -72,6 +73,20 @@ def main():
     # using tau = 10**(-9), 10 cycles take 0.03 second; 100 cycles take 0.3 seconds (single thread; AMD Ryzen 7 3700X at 4.05 GHz)
     # using tau = 10**(-10), 10 cycles take 0.3 second; 100 cycles take 3 seconds (single thread; AMD Ryzen 7 3700X at 4.05 GHz)
     # using tau = 10**(-11), 10 cycles take 3 seconds; 100 cycles take 30 seconds (single thread; AMD Ryzen 7 3700X at 4.05 GHz)
+
+    # additional numerical accuracy tests
+    dt = [10**(-8), 10**(-9), 10**(-10), 10**(-11)]
+    cycles = 10
+    for tau in dt:
+        nSteps = int(cycles/freq/tau)
+        trajectory = cyclotron([0,0,0], [vx, 0, 0], q, m, B, nSteps, tau, grad, maxCycle=cycles) 
+        plt.plot(trajectory[0,:], trajectory[1,:], label = 'dt = '+str(tau))
+
+    plt.title('Particle Trajectory Numerical Accuracy (10 cycles)')
+    plt.legend()
+    plt.xlabel('X axis')
+    plt.ylabel('Y axis')
+    plt.show()
 
     # (e) calculate the mean drift speed 
     # 100 cycles
