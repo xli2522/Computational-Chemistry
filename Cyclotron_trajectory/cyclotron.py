@@ -92,8 +92,8 @@ def main():
     # 100 cycles
     vol_drift = num_drift_vol(trajectory, tau, axis=1)                  # average drift velocity over 100 cycles
     anal_vol_drift = anal_drift_vol(vx, q, m, B, grad)                  # theoretical/analytical drift velocity
-    print('(d): the average estimated drift velocity from numerical results is: '+str(vol_drift)+' m/s')
-    print('     The velocity calculated in (b) is approximatly ' +str(anal_vol_drift)+' m/s, and the difference is '+str(vol_drift-anal_vol_drift)+' m/s')
+    print('(e): the average estimated drift velocity from numerical results is: '+str(vol_drift)+' m/s')
+    print('     The velocity calculated in (b) is approximatly ' +str(anal_vol_drift)+' m/s, and the difference is '+str(abs(vol_drift)-abs(anal_vol_drift))+' m/s')
 
     # (f) re-run for different magnetic field gradients and show the discrepancies between the theoretical and numerical results
     freq = q*B/m/(2*np.pi)              # calculate the cyclotron frequency (converted to Hz) at the initial position
@@ -109,7 +109,7 @@ def main():
         vol_drift = num_drift_vol(trajectory, tau, axis=1)
         anal_vol_drift = anal_drift_vol(vx, q, m, B, grad)
         ax[0].plot(trajectory[0,:], trajectory[1,:], label=str(grad))
-        ax[1].scatter(i, abs(vol_drift-anal_vol_drift), label='Gradient coeff: '+str(-grad))              # percentage of decrease per 0.8 m
+        ax[1].scatter(i, abs(abs(vol_drift)-abs(anal_vol_drift)), label='Gradient coeff: '+str(-grad))              # percentage of decrease per 0.8 m
     ax[0].set_ylabel('Y axis')
     ax[0].set_xlabel('X axis')
     ax[1].set_ylabel('Drift Velocity Difference')
@@ -238,7 +238,7 @@ def anal_drift_vol(vol, q, m, B, grad):
     Return:
                         vol_drift                           the theoretical drift velocity
     '''
-    vol_drift = 0.5*(((m*vol)/(q*B))**2*(q*B/m))*(B*grad/0.8)/B
+    vol_drift = 0.5*(((m*vol)/(q*B))**2*(q*B/m)*(B*grad/0.8)/B)
 
     return vol_drift
 
